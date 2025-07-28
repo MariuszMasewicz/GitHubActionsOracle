@@ -46,8 +46,7 @@ jobs:
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_calculator.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
-          bash analyze_test_output.sh
-
+          
       - name: Upload JUnit test results
         uses: actions/upload-artifact@v4
         with:
@@ -59,4 +58,8 @@ jobs:
         with:
           report_paths: ut_results.xml
           check_name: 'PL/SQL Unit Tests'
+
+      - name: Search for errors
+        run: |
+          bash analyze_test_output.sh
 
