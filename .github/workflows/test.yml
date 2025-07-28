@@ -1,0 +1,39 @@
+name: Run utPLSQL Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      oracle:
+        image: gvenzl/oracle-xe
+        ports:
+          - 1521:1521
+        env:
+          ORACLE_PASSWORD: oracle
+        options: >-
+          --health-cmd "echo 'select 1 from dual;' | sqlplus -s system/oracle@//localhost/XEPDB1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SQLcl
+        run: |
+          curl -L -o sqlcl.zip https://download.oracle.com/sqlcl/latest/sqlcl-latest.zip
+          unzip sqlcl.zip -d sqlcl
+
+      - name: Run Tests
+        run: |
+          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_calculator.sql
+          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_tests.sql
+          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 "BEGIN ut.run(); END;"
