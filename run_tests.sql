@@ -4,11 +4,10 @@ set serveroutput on
 SET SQLFORMAT ansiconsole
 
 -- Run all tests in the utPLSQL framework
+spool ut_results.xml
 BEGIN 
-ut.run(a_reporters => ut_reporters(
-                ut_junit_reporter(),
-                ut_coverage_html_reporter()
-              ),
-       a_output => 'ut_results.xml');
+ut.run(a_reporter => ut_junit_reporter()
+              );
 END;
 /
+spool off
