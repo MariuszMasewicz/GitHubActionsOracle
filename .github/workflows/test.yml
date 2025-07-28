@@ -38,7 +38,7 @@ jobs:
           curl -L -o utplsql-cli.zip https://github.com/utPLSQL/utPLSQL-cli/releases/latest/download/utplsql-cli.zip
           unzip utplsql-cli.zip
 
-        - name: Install SQLcl
+      - name: Install SQLcl
         run: |
           curl -L -o sqlcl.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.1.195.1751.zip
           unzip sqlcl.zip -d sqlcl
@@ -48,6 +48,12 @@ jobs:
           git clone https://github.com/utPLSQL/utPLSQL.git
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @utPLSQL/source/install_headless.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @ut3_grants.sql
+           
+      - name: Run Tests
+        run: |
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_calculator.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
 
       - name: Run utPLSQL Tests (CLI)
         run: |
@@ -61,12 +67,6 @@ jobs:
             --source-path=src \
             --test-path=test
       
-      - name: Run Tests
-        run: |
-          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_calculator.sql
-          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
-          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
-
       - name: Upload JUnit test results
         uses: actions/upload-artifact@v4
         with:
