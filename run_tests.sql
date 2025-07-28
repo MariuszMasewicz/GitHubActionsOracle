@@ -7,7 +7,8 @@ SET FEEDBACK OFF
 -- Run all tests in the utPLSQL framework
 spool ut_results.xml
 BEGIN 
-ut.run(a_reporter => ut_junit_reporter()
+ut.run(a_fail_on_errors => true,
+       a_reporter => ut_junit_reporter()
               );
 END;
 /
