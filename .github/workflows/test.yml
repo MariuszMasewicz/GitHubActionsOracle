@@ -43,3 +43,9 @@ jobs:
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_calculator.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
+
+      - name: Upload test results (JUnit)
+        uses: actions/upload-artifact@v3
+        with:
+          name: utplsql-test-results
+          path: ut_results.xml
