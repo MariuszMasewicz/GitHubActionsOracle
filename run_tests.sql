@@ -1,5 +1,5 @@
 set echo on
-set timing on
+--set timing on
 set serveroutput on
 SET SQLFORMAT ansiconsole
 
