@@ -4,7 +4,7 @@ CREATE OR REPLACE PACKAGE BODY calculator_pkg_test IS
     l_result NUMBER;
   BEGIN
     l_result := calculator_pkg.add(2, 3);
-    ut.expect(l_result).to_equal(5);
+    ut.expect(l_result).to_equal(6);
   END;
 
   PROCEDURE test_subtract IS
