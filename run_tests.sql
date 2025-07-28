@@ -13,4 +13,3 @@ ut.run(a_fail_on_errors => true,
 END;
 /
 spool off
-

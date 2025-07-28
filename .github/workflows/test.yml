@@ -27,17 +27,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Download utPLSQL-cli
-        run: |
-          curl -L -o utplsql-cli.zip https://github.com/utPLSQL/utPLSQL-cli/releases/latest/download/utplsql-cli.zip
-          unzip utplsql-cli.zip
-
       - name: Install SQLcl
         run: |
           curl -L -o sqlcl.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.1.195.1751.zip
@@ -55,18 +44,6 @@ jobs:
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
 
-      - name: Run utPLSQL Tests (CLI)
-        run: |
-          java -jar utPLSQL-cli/lib/cli-3.1.9.jar \
-            run \
-            -c "system/oracle@//localhost/XEPDB1" \
-            -p "calculator" \
-            -f=ut_documentation_reporter \
-            -f=ut_junit_reporter \
-            -o=ut_results.xml \
-            --source-path=src \
-            --test-path=test
-      
       - name: Upload JUnit test results
         uses: actions/upload-artifact@v4
         with:
