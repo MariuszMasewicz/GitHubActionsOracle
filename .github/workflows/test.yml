@@ -56,8 +56,3 @@ jobs:
           report_paths: ut_results.xml
           check_name: 'PL/SQL Unit Tests'
 
-      - name: Upload coverage report (HTML)
-        uses: actions/upload-artifact@v4
-        with:
-          name: utplsql-coverage-report
-          path: coverage.html
