@@ -66,6 +66,13 @@ jobs:
           include_passed: true
           fail_on_failure: true
           detailed_summary: true
+          summary: |
+            <details>
+            <summary>Test Results</summary>
+            <pre>
+            $(cat ut_results.xml)
+            </pre>
+            </details>
 
       - name: Search for errors
         run: |
