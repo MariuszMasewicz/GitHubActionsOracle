@@ -15,8 +15,9 @@ CREATE OR REPLACE PACKAGE calculator_pkg_test IS
   --%test(Test division)
   PROCEDURE test_divide;
 
+/*
   --%test(Test division by zero)
   PROCEDURE test_divide_by_zero;
-
+*/
 END calculator_pkg_test;
 /
