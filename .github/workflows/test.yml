@@ -59,7 +59,7 @@ jobs:
           path: ut_results.xml
 
       - name: Publish test summary to GitHub UI
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5.6.2
         with:
           report_paths: ut_results.xml
           check_name: 'PL/SQL Unit Tests'
