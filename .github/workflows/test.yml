@@ -30,10 +30,10 @@ jobs:
       - name: Install SQLcl
         run: |
           curl -L -o sqlcl.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.1.195.1751.zip
-          unzip sqlcl.zip 
+          unzip sqlcl.zip -d sqlcl
 
       - name: Run Tests
         run: |
-          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_calculator.sql
-          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_tests.sql
-          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 "BEGIN ut.run(); END;"
+          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_calculator.sql
+          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_tests.sql
+          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 "BEGIN ut.run(); END;"
