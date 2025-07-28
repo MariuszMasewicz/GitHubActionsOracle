@@ -32,6 +32,11 @@ jobs:
           curl -L -o sqlcl.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.1.195.1751.zip
           unzip sqlcl.zip -d sqlcl
 
+      - name: Download and install utPLSQL
+        run: |
+          git clone https://github.com/utPLSQL/utPLSQL.git
+          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @utPLSQL/source/install_headless.sql
+
       - name: Run Tests
         run: |
           ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_calculator.sql
