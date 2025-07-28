@@ -1,16 +1,26 @@
+--%suite(Temperature Converter Package Tests)
+ --%suitepath(Temperature_Converter)
 CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
+  --%test
   PROCEDURE test_celsius_to_kelvin;
+  --%test
   PROCEDURE test_kelvin_to_celsius;
+  --%test
   PROCEDURE test_celsius_to_fahrenheit;
+  --%test
   PROCEDURE test_fahrenheit_to_celsius;
+  --%test
   PROCEDURE test_kelvin_to_fahrenheit;
+  --%test
   PROCEDURE test_fahrenheit_to_kelvin;
 /*
-  -- Boundary tests
+  --%test
   PROCEDURE test_kelvin_below_zero;
+  --%test
   PROCEDURE test_celsius_below_absolute_zero;
+  --%test
   PROCEDURE test_fahrenheit_below_absolute_zero;
-*/
+  */
 END temperature_converter_pkg_test;
 /
 
