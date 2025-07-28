@@ -65,6 +65,7 @@ jobs:
           check_name: 'PL/SQL Unit Tests'
           include_passed: true
           fail_on_failure: true
+          detailed_summary: true
 
       - name: Search for errors
         run: |
