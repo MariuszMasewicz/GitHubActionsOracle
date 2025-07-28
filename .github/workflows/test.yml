@@ -30,7 +30,7 @@ jobs:
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
 
-        - name: Install SQLcl
+      - name: Install SQLcl
         run: |
           curl -L -o sqlcl.zip https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-25.2.1.195.1751.zip
           unzip sqlcl.zip -d sqlcl
