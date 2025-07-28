@@ -44,8 +44,20 @@ jobs:
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
 
-      - name: Upload test results (JUnit)
+      - name: Upload JUnit test results
         uses: actions/upload-artifact@v3
         with:
           name: utplsql-test-results
           path: ut_results.xml
+
+      - name: Publish test summary to GitHub UI
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: ut_results.xml
+          check_name: 'PL/SQL Unit Tests'
+
+      - name: Upload coverage report (HTML)
+        uses: actions/upload-artifact@v3
+        with:
+          name: utplsql-coverage-report
+          path: coverage.html

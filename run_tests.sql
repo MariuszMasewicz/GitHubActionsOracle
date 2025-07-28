@@ -5,7 +5,10 @@ SET SQLFORMAT ansiconsole
 
 -- Run all tests in the utPLSQL framework
 BEGIN 
-ut.run(a_reporters => ut_junit_reporter(),
+ut.run(a_reporters => ut_reporters(
+                ut_junit_reporter(),
+                ut_coverage_html_reporter()
+              ),
        a_output => 'ut_results.xml');
 END;
 /
