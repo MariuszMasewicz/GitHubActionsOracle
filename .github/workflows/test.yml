@@ -36,6 +36,7 @@ jobs:
         run: |
           git clone https://github.com/utPLSQL/utPLSQL.git
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @utPLSQL/source/install_headless.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @ut3_grants.sql
 
       - name: Run Tests
         run: |

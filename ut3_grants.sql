@@ -1,0 +1,1 @@
+grant INHERIT PRIVILEGES on USER SYS to UT3;
