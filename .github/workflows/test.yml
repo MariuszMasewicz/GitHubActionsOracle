@@ -40,6 +40,6 @@ jobs:
 
       - name: Run Tests
         run: |
-          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_calculator.sql
-          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @install_tests.sql
-          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @run_tests.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_calculator.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @install_tests.sql
+          ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
