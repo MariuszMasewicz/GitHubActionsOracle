@@ -69,6 +69,7 @@ jobs:
           detailed_summary: true
           include_time_in_summary: true
           group_suite: true
+          detailed_summary: true
 
       - name: Search for errors
         run: |
