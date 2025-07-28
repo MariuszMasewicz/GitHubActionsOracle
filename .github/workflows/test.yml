@@ -35,7 +35,7 @@ jobs:
       - name: Download and install utPLSQL
         run: |
           git clone https://github.com/utPLSQL/utPLSQL.git
-          ./sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @utPLSQL/source/install_headless.sql
+          ./sqlcl/sqlcl/bin/sql -S system/oracle@//localhost/XEPDB1 @utPLSQL/source/install_headless.sql
 
       - name: Run Tests
         run: |
