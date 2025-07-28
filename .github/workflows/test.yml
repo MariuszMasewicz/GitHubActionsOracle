@@ -1,5 +1,5 @@
 name: Run utPLSQL Tests
-run-name: ${{ github.actor }} TEST
+#run-name: ${{ github.actor }} TEST
 
 on:
   push:
