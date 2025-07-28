@@ -2,6 +2,7 @@ set echo on
 --set timing on
 set serveroutput on
 SET SQLFORMAT ansiconsole
+SET FEEDBACK OFF
 
 -- Run all tests in the utPLSQL framework
 spool ut_results.xml
