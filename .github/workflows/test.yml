@@ -57,7 +57,7 @@ jobs:
 
       - name: Run utPLSQL Tests (CLI)
         run: |
-          java -jar utplsql-cli/utplsql-cli.jar \
+          java -jar utPLSQL-cli/lib/cli-3.1.9.jar \
             run \
             -c "system/oracle@//localhost/XEPDB1" \
             -p "calculator" \
