@@ -69,20 +69,6 @@ jobs:
           detailed_summary: true
           include_time_in_summary: true
           group_suite: true
-          job_summary: |
-            <h2>utPLSQL Test Results</h2>
-            <p>Test results for the latest commit by <strong>${{ github.actor }}</strong>.</p>
-            <p>Total Tests: <strong>${{ steps.test_summary.outputs.total }}</strong></p>
-            <p>Passed: <strong>${{ steps.test_summary.outputs.passed }}</strong></p>
-            <p>Failed: <strong>${{ steps.test_summary.outputs.failed }}</strong></p>
-            <p>Skipped: <strong>${{ steps.test_summary.outputs.skipped }}</strong></p>
-          summary: |
-            <details>
-            <summary>Test Results</summary>
-            <pre>
-            $(cat ut_results.xml)
-            </pre>
-            </details>
 
       - name: Search for errors
         run: |
