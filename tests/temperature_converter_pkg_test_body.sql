@@ -1,0 +1,77 @@
+CREATE OR REPLACE PACKAGE BODY temperature_converter_pkg_test IS
+
+  PROCEDURE test_celsius_to_kelvin IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.celsius_to_kelvin(0);
+    ut.expect(l_result).to_equal(273.15);
+  END;
+
+  PROCEDURE test_kelvin_to_celsius IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.kelvin_to_celsius(273.15);
+    ut.expect(l_result).to_equal(0);
+  END;
+
+  PROCEDURE test_celsius_to_fahrenheit IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.celsius_to_fahrenheit(0);
+    ut.expect(l_result).to_equal(32);
+  END;
+
+  PROCEDURE test_fahrenheit_to_celsius IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.fahrenheit_to_celsius(32);
+    ut.expect(l_result).to_equal(0);
+  END;
+
+  PROCEDURE test_kelvin_to_fahrenheit IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.kelvin_to_fahrenheit(273.15);
+    ut.expect(l_result).to_equal(32);
+  END;
+
+  PROCEDURE test_fahrenheit_to_kelvin IS
+    l_result NUMBER;
+  BEGIN
+    l_result := temperature_converter_pkg.fahrenheit_to_kelvin(32);
+    ut.expect(l_result).to_equal(273.15);
+  END;
+
+  -- Boundary tests
+  PROCEDURE test_kelvin_below_zero IS
+  BEGIN
+    ut.expect(
+      FUNCTION RETURN NUMBER IS
+      BEGIN
+        RETURN temperature_converter_pkg.kelvin_to_celsius(-1);
+      END;
+    ).to_raise_application_error;
+  END;
+
+  PROCEDURE test_celsius_below_absolute_zero IS
+  BEGIN
+    ut.expect(
+      FUNCTION RETURN NUMBER IS
+      BEGIN
+        RETURN temperature_converter_pkg.celsius_to_kelvin(-274);
+      END;
+    ).to_raise_application_error;
+  END;
+
+  PROCEDURE test_fahrenheit_below_absolute_zero IS
+  BEGIN
+    ut.expect(
+      FUNCTION RETURN NUMBER IS
+      BEGIN
+        RETURN temperature_converter_pkg.fahrenheit_to_kelvin(-500);
+      END;
+    ).to_raise_application_error;
+  END;
+
+END temperature_converter_pkg_test;
+/
