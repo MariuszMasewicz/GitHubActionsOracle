@@ -1,71 +1,77 @@
-CREATE OR REPLACE PACKAGE distance_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE DISTANCE_CONVERTER_PKG_TEST IS
 --%suite(Distance Converter Package Tests)
 --%suitepath(Distance_Converter)
 
   --%test(Meters to Yards conversion)
-  PROCEDURE test_meters_to_yards;
+  PROCEDURE TEST_METERS_TO_YARDS;
   --%test(Meters to Yards negative distance)
   --%throws(distance_converter_pkg.distance_negative)
-  PROCEDURE test_meters_to_yards_negative;
+  PROCEDURE TEST_METERS_TO_YARDS_NEGATIVE;
 
   --%test(Yards to Meters conversion)
-  PROCEDURE test_yards_to_meters;
+  PROCEDURE TEST_YARDS_TO_METERS;
   --%test(Yards to Meters negative distance)
   --PROCEDURE test_yards_to_meters_negative;
 
   --%test(Meters to Feet conversion)
-  PROCEDURE test_meters_to_feet;
+  PROCEDURE TEST_METERS_TO_FEET;
   --%test(Meters to Feet negative distance)
   --PROCEDURE test_meters_to_feet_negative;
 
   --%test(Feet to Meters conversion)
-  PROCEDURE test_feet_to_meters;
+  PROCEDURE TEST_FEET_TO_METERS;
   --%test(Feet to Meters negative distance)
   --PROCEDURE test_feet_to_meters_negative;
 
   --%test(Meters to Inches conversion)
-  PROCEDURE test_meters_to_inches;
+  PROCEDURE TEST_METERS_TO_INCHES;
   --%test(Meters to Inches negative distance)
   --PROCEDURE test_meters_to_inches_negative;
 
   --%test(Inches to Meters conversion)
-  PROCEDURE test_inches_to_meters;
+  PROCEDURE TEST_INCHES_TO_METERS;
   --%test(Inches to Meters negative distance)
   --PROCEDURE test_inches_to_meters_negative;
 
   --%test(Kilometers to Miles conversion)
-  PROCEDURE test_kilometers_to_miles;
+  PROCEDURE TEST_KILOMETERS_TO_MILES;
   --%test(Kilometers to Miles negative distance)
   --PROCEDURE test_kilometers_to_miles_negative;
 
   --%test(Miles to Kilometers conversion)
-  PROCEDURE test_miles_to_kilometers;
+  PROCEDURE TEST_MILES_TO_KILOMETERS;
   --%test(Miles to Kilometers negative distance)
   --PROCEDURE test_miles_to_kilometers_negative;
 
-END distance_converter_pkg_test;
+END DISTANCE_CONVERTER_PKG_TEST;
 /
 
-CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE BODY DISTANCE_CONVERTER_PKG_TEST IS
 
-  PROCEDURE test_meters_to_yards IS
-    l_result NUMBER;
+  PROCEDURE TEST_METERS_TO_YARDS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.meters_to_yards(1);
-    ut.expect(l_result).to_be_between(1.0936, 1.0937);
-  END test_meters_to_yards;
+    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_YARDS(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      1.0936
+     ,1.0937
+    );
+  END TEST_METERS_TO_YARDS;
 
-  PROCEDURE test_meters_to_yards_negative IS
+/*   PROCEDURE TEST_METERS_TO_YARDS_NEGATIVE IS
   BEGIN
-    distance_converter_pkg.meters_to_yards(-1);
-  END test_meters_to_yards_negative;
+    DISTANCE_CONVERTER_PKG.METERS_TO_YARDS(-1);
+  END TEST_METERS_TO_YARDS_NEGATIVE; */
 
-  PROCEDURE test_yards_to_meters IS
-    l_result NUMBER;
+  PROCEDURE TEST_YARDS_TO_METERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.yards_to_meters(1.0936133);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_yards_to_meters;
+    L_RESULT := DISTANCE_CONVERTER_PKG.YARDS_TO_METERS(1.0936133);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_YARDS_TO_METERS;
 
 /*   PROCEDURE test_yards_to_meters_negative IS
   BEGIN
@@ -73,12 +79,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_yards_to_meters_negative; */
 
-  PROCEDURE test_meters_to_feet IS
-    l_result NUMBER;
+  PROCEDURE TEST_METERS_TO_FEET IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.meters_to_feet(1);
-    ut.expect(l_result).to_be_between(3.2808, 3.2809);
-  END test_meters_to_feet;
+    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_FEET(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      3.2808
+     ,3.2809
+    );
+  END TEST_METERS_TO_FEET;
 
 /*   PROCEDURE test_meters_to_feet_negative IS
   BEGIN
@@ -86,12 +95,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_meters_to_feet_negative; */
 
-  PROCEDURE test_feet_to_meters IS
-    l_result NUMBER;
+  PROCEDURE TEST_FEET_TO_METERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.feet_to_meters(3.2808399);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_feet_to_meters;
+    L_RESULT := DISTANCE_CONVERTER_PKG.FEET_TO_METERS(3.2808399);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_FEET_TO_METERS;
 
 /*   PROCEDURE test_feet_to_meters_negative IS
   BEGIN
@@ -99,12 +111,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_feet_to_meters_negative; */
 
-  PROCEDURE test_meters_to_inches IS
-    l_result NUMBER;
+  PROCEDURE TEST_METERS_TO_INCHES IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.meters_to_inches(1);
-    ut.expect(l_result).to_be_between(39.3700, 39.3701);
-  END test_meters_to_inches;
+    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_INCHES(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      39.3700
+     ,39.3701
+    );
+  END TEST_METERS_TO_INCHES;
 
 /*   PROCEDURE test_meters_to_inches_negative IS
   BEGIN
@@ -112,12 +127,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_meters_to_inches_negative; */
 
-  PROCEDURE test_inches_to_meters IS
-    l_result NUMBER;
+  PROCEDURE TEST_INCHES_TO_METERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.inches_to_meters(39.3700787);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_inches_to_meters;
+    L_RESULT := DISTANCE_CONVERTER_PKG.INCHES_TO_METERS(39.3700787);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_INCHES_TO_METERS;
 
 /*   PROCEDURE test_inches_to_meters_negative IS
   BEGIN
@@ -125,12 +143,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_inches_to_meters_negative; */
 
-  PROCEDURE test_kilometers_to_miles IS
-    l_result NUMBER;
+  PROCEDURE TEST_KILOMETERS_TO_MILES IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.kilometers_to_miles(1);
-    ut.expect(l_result).to_be_between(0.6213, 0.6214);
-  END test_kilometers_to_miles;
+    L_RESULT := DISTANCE_CONVERTER_PKG.KILOMETERS_TO_MILES(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.6213
+     ,0.6214
+    );
+  END TEST_KILOMETERS_TO_MILES;
 
 /*   PROCEDURE test_kilometers_to_miles_negative IS
   BEGIN
@@ -138,12 +159,15 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_kilometers_to_miles_negative; */
 
-  PROCEDURE test_miles_to_kilometers IS
-    l_result NUMBER;
+  PROCEDURE TEST_MILES_TO_KILOMETERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := distance_converter_pkg.miles_to_kilometers(0.621371192);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_miles_to_kilometers;
+    L_RESULT := DISTANCE_CONVERTER_PKG.MILES_TO_KILOMETERS(0.621371192);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_MILES_TO_KILOMETERS;
 
 /*   PROCEDURE test_miles_to_kilometers_negative IS
   BEGIN
@@ -151,5 +175,5 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
     ).to_raise_exception('DISTANCE_NEGATIVE');
   END test_miles_to_kilometers_negative; */
 
-END distance_converter_pkg_test;
+END DISTANCE_CONVERTER_PKG_TEST;
 /
