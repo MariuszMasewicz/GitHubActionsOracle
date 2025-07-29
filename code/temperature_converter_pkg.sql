@@ -1,53 +1,41 @@
-CREATE OR REPLACE PACKAGE distance_converter_pkg AS
-  FUNCTION meters_to_yards(p_meters NUMBER) RETURN NUMBER;
-  FUNCTION yards_to_meters(p_yards NUMBER) RETURN NUMBER;
-  FUNCTION meters_to_feet(p_meters NUMBER) RETURN NUMBER;
-  FUNCTION feet_to_meters(p_feet NUMBER) RETURN NUMBER;
-  FUNCTION meters_to_inches(p_meters NUMBER) RETURN NUMBER;
-  FUNCTION inches_to_meters(p_inches NUMBER) RETURN NUMBER;
-  FUNCTION kilometers_to_miles(p_kilometers NUMBER) RETURN NUMBER;
-  FUNCTION miles_to_kilometers(p_miles NUMBER) RETURN NUMBER;
-END distance_converter_pkg;
+CREATE OR REPLACE PACKAGE temperature_converter_pkg AS
+  FUNCTION celsius_to_kelvin(p_celsius NUMBER) RETURN NUMBER;
+  FUNCTION kelvin_to_celsius(p_kelvin NUMBER) RETURN NUMBER;
+  FUNCTION celsius_to_fahrenheit(p_celsius NUMBER) RETURN NUMBER;
+  FUNCTION fahrenheit_to_celsius(p_fahrenheit NUMBER) RETURN NUMBER;
+  FUNCTION kelvin_to_fahrenheit(p_kelvin NUMBER) RETURN NUMBER;
+  FUNCTION fahrenheit_to_kelvin(p_fahrenheit NUMBER) RETURN NUMBER;
+END temperature_converter_pkg;
 /
-CREATE OR REPLACE PACKAGE BODY distance_converter_pkg AS
-  FUNCTION meters_to_yards(p_meters NUMBER) RETURN NUMBER IS
+CREATE OR REPLACE PACKAGE BODY temperature_converter_pkg AS
+  FUNCTION celsius_to_kelvin(p_celsius NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_meters * 1.0936133;
-  END meters_to_yards;
+    RETURN p_celsius + 273.15;
+  END celsius_to_kelvin;
 
-  FUNCTION yards_to_meters(p_yards NUMBER) RETURN NUMBER IS
+  FUNCTION kelvin_to_celsius(p_kelvin NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_yards / 1.0936133;
-  END yards_to_meters;
+    RETURN p_kelvin - 273.15;
+  END kelvin_to_celsius;
 
-  FUNCTION meters_to_feet(p_meters NUMBER) RETURN NUMBER IS
+  FUNCTION celsius_to_fahrenheit(p_celsius NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_meters * 3.2808399;
-  END meters_to_feet;
+    RETURN p_celsius * 9/5 + 32;
+  END celsius_to_fahrenheit;
 
-  FUNCTION feet_to_meters(p_feet NUMBER) RETURN NUMBER IS
+  FUNCTION fahrenheit_to_celsius(p_fahrenheit NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_feet / 3.2808399;
-  END feet_to_meters;
+    RETURN (p_fahrenheit - 32) * 5/9;
+  END fahrenheit_to_celsius;
 
-  FUNCTION meters_to_inches(p_meters NUMBER) RETURN NUMBER IS
+  FUNCTION kelvin_to_fahrenheit(p_kelvin NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_meters * 39.3700787;
-  END meters_to_inches;
+    RETURN (p_kelvin - 273.15) * 9/5 + 32;
+  END kelvin_to_fahrenheit;
 
-  FUNCTION inches_to_meters(p_inches NUMBER) RETURN NUMBER IS
+  FUNCTION fahrenheit_to_kelvin(p_fahrenheit NUMBER) RETURN NUMBER IS
   BEGIN
-    RETURN p_inches / 39.3700787;
-  END inches_to_meters;
-
-  FUNCTION kilometers_to_miles(p_kilometers NUMBER) RETURN NUMBER IS
-  BEGIN
-    RETURN p_kilometers * 0.621371192;
-  END kilometers_to_miles;
-
-  FUNCTION miles_to_kilometers(p_miles NUMBER) RETURN NUMBER IS
-  BEGIN
-    RETURN p_miles / 0.621371192;
-  END miles_to_kilometers;
-END distance_converter_pkg;
+    RETURN (p_fahrenheit - 32) * 5/9 + 273.15;
+  END fahrenheit_to_kelvin;
+END temperature_converter_pkg;
 /
