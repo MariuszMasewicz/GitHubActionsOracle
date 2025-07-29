@@ -122,4 +122,6 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg_test IS
   BEGIN
     l_result := distance_converter_pkg.inches_to_meters(39.3700787);
     ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_inches
+  END test_inches;
+  /
+  
