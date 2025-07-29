@@ -1,56 +1,68 @@
-CREATE OR REPLACE PACKAGE calculator_pkg_test IS
+CREATE OR REPLACE PACKAGE CALCULATOR_PKG_TEST IS
   -- utPLSQL test package
   --%suite(Calculator Package Tests)
   --%suitepath(calculator)
 
   --%test(Test addition)
-  PROCEDURE test_add;
+  PROCEDURE TEST_ADD;
 
   --%test(Test subtraction)
-  PROCEDURE test_subtract;
+  PROCEDURE TEST_SUBTRACT;
 
   --%test(Test multiplication)
-  PROCEDURE test_multiply;
+  PROCEDURE TEST_MULTIPLY;
 
   --%test(Test division)
-  PROCEDURE test_divide;
+  PROCEDURE TEST_DIVIDE;
 
 /*
   --%test(Test division by zero)
   PROCEDURE test_divide_by_zero;
 */
-END calculator_pkg_test;
+END CALCULATOR_PKG_TEST;
 /
 
-CREATE OR REPLACE PACKAGE BODY calculator_pkg_test IS
+CREATE OR REPLACE PACKAGE BODY CALCULATOR_PKG_TEST IS
 
-  PROCEDURE test_add IS
-    l_result NUMBER;
+  PROCEDURE TEST_ADD IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := calculator_pkg.add(2, 3);
-    ut.expect(l_result).to_equal(5);
-  END test_add;
+    L_RESULT := CALCULATOR_PKG.ADD(
+      2
+     ,3
+    );
+    UT.EXPECT(L_RESULT).TO_EQUAL(5);
+  END TEST_ADD;
 
-  PROCEDURE test_subtract IS
-    l_result NUMBER;
+  PROCEDURE TEST_SUBTRACT IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := calculator_pkg.subtract(10, 4);
-    ut.expect(l_result).to_equal(6);
-  END test_subtract;
+    L_RESULT := CALCULATOR_PKG.SUBTRACT(
+      10
+     ,4
+    );
+    UT.EXPECT(L_RESULT).TO_EQUAL(6);
+  END TEST_SUBTRACT;
 
-  PROCEDURE test_multiply IS
-    l_result NUMBER;
+  PROCEDURE TEST_MULTIPLY IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := calculator_pkg.multiply(3, 5);
-    ut.expect(l_result).to_equal(15);
-  END test_multiply;
+    L_RESULT := CALCULATOR_PKG.MULTIPLY(
+      3
+     ,5
+    );
+    UT.EXPECT(L_RESULT).TO_EQUAL(15);
+  END TEST_MULTIPLY;
 
-  PROCEDURE test_divide IS
-    l_result NUMBER;
+  PROCEDURE TEST_DIVIDE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := calculator_pkg.divide(10, 2);
-    ut.expect(l_result).to_equal(5);
-  END test_divide;
+    L_RESULT := CALCULATOR_PKG.DIVIDE(
+      10
+     ,2
+    );
+    UT.EXPECT(L_RESULT).TO_EQUAL(5);
+  END TEST_DIVIDE;
 
 /*
   PROCEDURE test_divide_by_zero IS
@@ -63,5 +75,5 @@ CREATE OR REPLACE PACKAGE BODY calculator_pkg_test IS
     ).to_raise_application_error(-20001);
   END test_divide_by_zero;
 */
-END calculator_pkg_test;
+END CALCULATOR_PKG_TEST;
 /

@@ -1,195 +1,219 @@
-CREATE OR REPLACE PACKAGE volume_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE VOLUME_CONVERTER_PKG_TEST IS
 --%suite(Volume Converter Package Tests)
 --%suitepath(Volume_Converter)
 
   --%test(Liters to Gallons conversion)
-  PROCEDURE test_liters_to_gallons;
+  PROCEDURE TEST_LITERS_TO_GALLONS;
 
   --%test(Liters to Gallons negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_liters_to_gallons_negative;
+  PROCEDURE TEST_LITERS_TO_GALLONS_NEGATIVE;
 
   --%test(Gallons to Liters conversion)
-  PROCEDURE test_gallons_to_liters;
+  PROCEDURE TEST_GALLONS_TO_LITERS;
 
   --%test(Gallons to Liters negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_gallons_to_liters_negative;
+  PROCEDURE TEST_GALLONS_TO_LITERS_NEGATIVE;
 
   --%test(Liters to Pints conversion)
-  PROCEDURE test_liters_to_pints;
+  PROCEDURE TEST_LITERS_TO_PINTS;
 
   --%test(Liters to Pints negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_liters_to_pints_negative;
+  PROCEDURE TEST_LITERS_TO_PINTS_NEGATIVE;
 
   --%test(Pints to Liters conversion)
-  PROCEDURE test_pints_to_liters;
+  PROCEDURE TEST_PINTS_TO_LITERS;
 
   --%test(Pints to Liters negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_pints_to_liters_negative;
+  PROCEDURE TEST_PINTS_TO_LITERS_NEGATIVE;
 
   --%test(Liters to Fluid Ounces conversion)
-  PROCEDURE test_liters_to_fluid_ounces;
+  PROCEDURE TEST_LITERS_TO_FLUID_OUNCES;
 
   --%test(Liters to Fluid Ounces negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_liters_to_fluid_ounces_negative;
+  PROCEDURE TEST_LITERS_TO_FLUID_OUNCES_NEGATIVE;
 
   --%test(Fluid Ounces to Liters conversion)
-  PROCEDURE test_fluid_ounces_to_liters;
+  PROCEDURE TEST_FLUID_OUNCES_TO_LITERS;
 
   --%test(Fluid Ounces to Liters negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_fluid_ounces_to_liters_negative;
+  PROCEDURE TEST_FLUID_OUNCES_TO_LITERS_NEGATIVE;
 
   --%test(Cubic Meters to Cubic Feet conversion)
-  PROCEDURE test_cubic_meters_to_cubic_feet;
+  PROCEDURE TEST_CUBIC_METERS_TO_CUBIC_FEET;
 
   --%test(Cubic Meters to Cubic Feet negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_cubic_meters_to_cubic_feet_negative;
+  PROCEDURE TEST_CUBIC_METERS_TO_CUBIC_FEET_NEGATIVE;
 
   --%test(Cubic Feet to Cubic Meters conversion)
-  PROCEDURE test_cubic_feet_to_cubic_meters;
+  PROCEDURE TEST_CUBIC_FEET_TO_CUBIC_METERS;
 
   --%test(Cubic Feet to Cubic Meters negative volume)
   --%throws(volume_converter_pkg.volume_negative)
-  PROCEDURE test_cubic_feet_to_cubic_meters_negative;
+  PROCEDURE TEST_CUBIC_FEET_TO_CUBIC_METERS_NEGATIVE;
 
-END volume_converter_pkg_test;
+END VOLUME_CONVERTER_PKG_TEST;
 /
 
-CREATE OR REPLACE PACKAGE BODY volume_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE BODY VOLUME_CONVERTER_PKG_TEST IS
 
-  PROCEDURE test_liters_to_gallons IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_GALLONS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_gallons(1);
-    ut.expect(l_result).to_be_between(0.26417, 0.26418);
-  END test_liters_to_gallons;
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_GALLONS(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.26417
+     ,0.26418
+    );
+  END TEST_LITERS_TO_GALLONS;
 
-  PROCEDURE test_liters_to_gallons_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_GALLONS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_gallons(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_GALLONS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_liters_to_gallons_negative;
+  END TEST_LITERS_TO_GALLONS_NEGATIVE;
 
-  PROCEDURE test_gallons_to_liters IS
-    l_result NUMBER;
+  PROCEDURE TEST_GALLONS_TO_LITERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.gallons_to_liters(0.264172052);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_gallons_to_liters;
+    L_RESULT := VOLUME_CONVERTER_PKG.GALLONS_TO_LITERS(0.264172052);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_GALLONS_TO_LITERS;
 
-  PROCEDURE test_gallons_to_liters_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_GALLONS_TO_LITERS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.gallons_to_liters(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.GALLONS_TO_LITERS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_gallons_to_liters_negative;
+  END TEST_GALLONS_TO_LITERS_NEGATIVE;
 
-  PROCEDURE test_liters_to_pints IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_PINTS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_pints(1);
-    ut.expect(l_result).to_be_between(2.1133, 2.1135);
-  END test_liters_to_pints;
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_PINTS(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      2.1133
+     ,2.1135
+    );
+  END TEST_LITERS_TO_PINTS;
 
-  PROCEDURE test_liters_to_pints_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_PINTS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_pints(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_PINTS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_liters_to_pints_negative;
+  END TEST_LITERS_TO_PINTS_NEGATIVE;
 
-  PROCEDURE test_pints_to_liters IS
-    l_result NUMBER;
+  PROCEDURE TEST_PINTS_TO_LITERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.pints_to_liters(2.11337642);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_pints_to_liters;
+    L_RESULT := VOLUME_CONVERTER_PKG.PINTS_TO_LITERS(2.11337642);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_PINTS_TO_LITERS;
 
-  PROCEDURE test_pints_to_liters_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_PINTS_TO_LITERS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.pints_to_liters(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.PINTS_TO_LITERS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_pints_to_liters_negative;
+  END TEST_PINTS_TO_LITERS_NEGATIVE;
 
-  PROCEDURE test_liters_to_fluid_ounces IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_FLUID_OUNCES IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_fluid_ounces(1);
-    ut.expect(l_result).to_be_between(33.8140, 33.8141);
-  END test_liters_to_fluid_ounces;
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_FLUID_OUNCES(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      33.8140
+     ,33.8141
+    );
+  END TEST_LITERS_TO_FLUID_OUNCES;
 
-  PROCEDURE test_liters_to_fluid_ounces_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_LITERS_TO_FLUID_OUNCES_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.liters_to_fluid_ounces(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.LITERS_TO_FLUID_OUNCES(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_liters_to_fluid_ounces_negative;
+  END TEST_LITERS_TO_FLUID_OUNCES_NEGATIVE;
 
-  PROCEDURE test_fluid_ounces_to_liters IS
-    l_result NUMBER;
+  PROCEDURE TEST_FLUID_OUNCES_TO_LITERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.fluid_ounces_to_liters(33.8140227);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_fluid_ounces_to_liters;
+    L_RESULT := VOLUME_CONVERTER_PKG.FLUID_OUNCES_TO_LITERS(33.8140227);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_FLUID_OUNCES_TO_LITERS;
 
-  PROCEDURE test_fluid_ounces_to_liters_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_FLUID_OUNCES_TO_LITERS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.fluid_ounces_to_liters(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.FLUID_OUNCES_TO_LITERS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_fluid_ounces_to_liters_negative;
+  END TEST_FLUID_OUNCES_TO_LITERS_NEGATIVE;
 
-  PROCEDURE test_cubic_meters_to_cubic_feet IS
-    l_result NUMBER;
+  PROCEDURE TEST_CUBIC_METERS_TO_CUBIC_FEET IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.cubic_meters_to_cubic_feet(1);
-    ut.expect(l_result).to_be_between(35.3146, 35.3147);
-  END test_cubic_meters_to_cubic_feet;
+    L_RESULT := VOLUME_CONVERTER_PKG.CUBIC_METERS_TO_CUBIC_FEET(1);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      35.3146
+     ,35.3147
+    );
+  END TEST_CUBIC_METERS_TO_CUBIC_FEET;
 
-  PROCEDURE test_cubic_meters_to_cubic_feet_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_CUBIC_METERS_TO_CUBIC_FEET_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.cubic_meters_to_cubic_feet(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.CUBIC_METERS_TO_CUBIC_FEET(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_cubic_meters_to_cubic_feet_negative;
+  END TEST_CUBIC_METERS_TO_CUBIC_FEET_NEGATIVE;
 
-  PROCEDURE test_cubic_feet_to_cubic_meters IS
-    l_result NUMBER;
+  PROCEDURE TEST_CUBIC_FEET_TO_CUBIC_METERS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.cubic_feet_to_cubic_meters(35.3146667);
-    ut.expect(l_result).to_be_between(0.9999, 1.0001);
-  END test_cubic_feet_to_cubic_meters;
+    L_RESULT := VOLUME_CONVERTER_PKG.CUBIC_FEET_TO_CUBIC_METERS(35.3146667);
+    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(
+      0.9999
+     ,1.0001
+    );
+  END TEST_CUBIC_FEET_TO_CUBIC_METERS;
 
-  PROCEDURE test_cubic_feet_to_cubic_meters_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_CUBIC_FEET_TO_CUBIC_METERS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := volume_converter_pkg.cubic_feet_to_cubic_meters(-1);
+    L_RESULT := VOLUME_CONVERTER_PKG.CUBIC_FEET_TO_CUBIC_METERS(-1);
   /*EXCEPTION
     WHEN volume_converter_pkg.volume_negative THEN
       ut.expect(sqlcode).to_equal(-20003);*/
-  END test_cubic_feet_to_cubic_meters_negative;
+  END TEST_CUBIC_FEET_TO_CUBIC_METERS_NEGATIVE;
 
-END volume_converter_pkg_test;
+END VOLUME_CONVERTER_PKG_TEST;
 /

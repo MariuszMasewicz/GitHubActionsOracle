@@ -1,149 +1,149 @@
-CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE TEMPERATURE_CONVERTER_PKG_TEST IS
 --%suite(Temperature Converter Package Tests)
 --%suitepath(Temperature_Converter)
 
   --%test(Celsius to Kelvin conversion)
-  PROCEDURE test_celsius_to_kelvin;
+  PROCEDURE TEST_CELSIUS_TO_KELVIN;
 
   --%test(Celsius to Kelvin below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_celsius_to_kelvin_negative;
+  PROCEDURE TEST_CELSIUS_TO_KELVIN_NEGATIVE;
 
   --%test(Kelvin to Celsius conversion)
-  PROCEDURE test_kelvin_to_celsius;
+  PROCEDURE TEST_KELVIN_TO_CELSIUS;
 
   --%test(Kelvin to Celsius below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_kelvin_to_celsius_negative;
+  PROCEDURE TEST_KELVIN_TO_CELSIUS_NEGATIVE;
 
   --%test(Celsius to Fahrenheit conversion)
-  PROCEDURE test_celsius_to_fahrenheit;
+  PROCEDURE TEST_CELSIUS_TO_FAHRENHEIT;
 
   --%test(Celsius to Fahrenheit below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_celsius_to_fahrenheit_negative;
+  PROCEDURE TEST_CELSIUS_TO_FAHRENHEIT_NEGATIVE;
 
   --%test(Fahrenheit to Celsius conversion)
-  PROCEDURE test_fahrenheit_to_celsius;
+  PROCEDURE TEST_FAHRENHEIT_TO_CELSIUS;
 
   --%test(Fahrenheit to Celsius below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_fahrenheit_to_celsius_negative;
+  PROCEDURE TEST_FAHRENHEIT_TO_CELSIUS_NEGATIVE;
 
   --%test(Kelvin to Fahrenheit conversion)
-  PROCEDURE test_kelvin_to_fahrenheit;
+  PROCEDURE TEST_KELVIN_TO_FAHRENHEIT;
 
   --%test(Kelvin to Fahrenheit below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_kelvin_to_fahrenheit_negative;
+  PROCEDURE TEST_KELVIN_TO_FAHRENHEIT_NEGATIVE;
 
   --%test(Fahrenheit to Kelvin conversion)
-  PROCEDURE test_fahrenheit_to_kelvin;
+  PROCEDURE TEST_FAHRENHEIT_TO_KELVIN;
 
   --%test(Fahrenheit to Kelvin below absolute zero - should raise exception)
   --%throws(temperature_converter_pkg.absolute_zero)
-  PROCEDURE test_fahrenheit_to_kelvin_negative;
+  PROCEDURE TEST_FAHRENHEIT_TO_KELVIN_NEGATIVE;
 
-END temperature_converter_pkg_test;
+END TEMPERATURE_CONVERTER_PKG_TEST;
 /
 
-CREATE OR REPLACE PACKAGE BODY temperature_converter_pkg_test IS
+CREATE OR REPLACE PACKAGE BODY TEMPERATURE_CONVERTER_PKG_TEST IS
 
-  PROCEDURE test_celsius_to_kelvin IS
-    l_result NUMBER;
+  PROCEDURE TEST_CELSIUS_TO_KELVIN IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.celsius_to_kelvin(0);
-    ut.expect(l_result).to_equal(273.15);
-  END test_celsius_to_kelvin;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.CELSIUS_TO_KELVIN(0);
+    UT.EXPECT(L_RESULT).TO_EQUAL(273.15);
+  END TEST_CELSIUS_TO_KELVIN;
 
-  PROCEDURE test_celsius_to_kelvin_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_CELSIUS_TO_KELVIN_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.celsius_to_kelvin(-274);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.CELSIUS_TO_KELVIN(-274);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_celsius_to_kelvin_negative;
+  END TEST_CELSIUS_TO_KELVIN_NEGATIVE;
 
-  PROCEDURE test_kelvin_to_celsius IS
-    l_result NUMBER;
+  PROCEDURE TEST_KELVIN_TO_CELSIUS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.kelvin_to_celsius(273.15);
-    ut.expect(l_result).to_equal(0);
-  END test_kelvin_to_celsius;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.KELVIN_TO_CELSIUS(273.15);
+    UT.EXPECT(L_RESULT).TO_EQUAL(0);
+  END TEST_KELVIN_TO_CELSIUS;
 
-  PROCEDURE test_kelvin_to_celsius_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_KELVIN_TO_CELSIUS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.kelvin_to_celsius(-1);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.KELVIN_TO_CELSIUS(-1);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_kelvin_to_celsius_negative;
+  END TEST_KELVIN_TO_CELSIUS_NEGATIVE;
 
-  PROCEDURE test_celsius_to_fahrenheit IS
-    l_result NUMBER;
+  PROCEDURE TEST_CELSIUS_TO_FAHRENHEIT IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.celsius_to_fahrenheit(0);
-    ut.expect(l_result).to_equal(32);
-  END test_celsius_to_fahrenheit;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.CELSIUS_TO_FAHRENHEIT(0);
+    UT.EXPECT(L_RESULT).TO_EQUAL(32);
+  END TEST_CELSIUS_TO_FAHRENHEIT;
 
-  PROCEDURE test_celsius_to_fahrenheit_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_CELSIUS_TO_FAHRENHEIT_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.celsius_to_fahrenheit(-274);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.CELSIUS_TO_FAHRENHEIT(-274);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_celsius_to_fahrenheit_negative;
+  END TEST_CELSIUS_TO_FAHRENHEIT_NEGATIVE;
 
-  PROCEDURE test_fahrenheit_to_celsius IS
-    l_result NUMBER;
+  PROCEDURE TEST_FAHRENHEIT_TO_CELSIUS IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.fahrenheit_to_celsius(32);
-    ut.expect(l_result).to_equal(0);
-  END test_fahrenheit_to_celsius;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.FAHRENHEIT_TO_CELSIUS(32);
+    UT.EXPECT(L_RESULT).TO_EQUAL(0);
+  END TEST_FAHRENHEIT_TO_CELSIUS;
 
-  PROCEDURE test_fahrenheit_to_celsius_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_FAHRENHEIT_TO_CELSIUS_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.fahrenheit_to_celsius(-500);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.FAHRENHEIT_TO_CELSIUS(-500);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_fahrenheit_to_celsius_negative;
+  END TEST_FAHRENHEIT_TO_CELSIUS_NEGATIVE;
 
-  PROCEDURE test_kelvin_to_fahrenheit IS
-    l_result NUMBER;
+  PROCEDURE TEST_KELVIN_TO_FAHRENHEIT IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.kelvin_to_fahrenheit(273.15);
-    ut.expect(l_result).to_equal(32);
-  END test_kelvin_to_fahrenheit;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.KELVIN_TO_FAHRENHEIT(273.15);
+    UT.EXPECT(L_RESULT).TO_EQUAL(32);
+  END TEST_KELVIN_TO_FAHRENHEIT;
 
-  PROCEDURE test_kelvin_to_fahrenheit_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_KELVIN_TO_FAHRENHEIT_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.kelvin_to_fahrenheit(-1);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.KELVIN_TO_FAHRENHEIT(-1);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_kelvin_to_fahrenheit_negative;
+  END TEST_KELVIN_TO_FAHRENHEIT_NEGATIVE;
 
-  PROCEDURE test_fahrenheit_to_kelvin IS
-    l_result NUMBER;
+  PROCEDURE TEST_FAHRENHEIT_TO_KELVIN IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.fahrenheit_to_kelvin(32);
-    ut.expect(l_result).to_equal(273.15);
-  END test_fahrenheit_to_kelvin;
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.FAHRENHEIT_TO_KELVIN(32);
+    UT.EXPECT(L_RESULT).TO_EQUAL(273.15);
+  END TEST_FAHRENHEIT_TO_KELVIN;
 
-  PROCEDURE test_fahrenheit_to_kelvin_negative IS
-    l_result NUMBER;
+  PROCEDURE TEST_FAHRENHEIT_TO_KELVIN_NEGATIVE IS
+    L_RESULT NUMBER;
   BEGIN
-    l_result := temperature_converter_pkg.fahrenheit_to_kelvin(-500);
+    L_RESULT := TEMPERATURE_CONVERTER_PKG.FAHRENHEIT_TO_KELVIN(-500);
 /*   EXCEPTION
     WHEN temperature_converter_pkg.absolute_zero THEN
       ut.expect(sqlcode).to_equal(-20002); */
-  END test_fahrenheit_to_kelvin_negative;
+  END TEST_FAHRENHEIT_TO_KELVIN_NEGATIVE;
 
-END temperature_converter_pkg_test;
+END TEMPERATURE_CONVERTER_PKG_TEST;
 /
