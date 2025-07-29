@@ -1,6 +1,8 @@
+
+CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
 --%suite(Temperature Converter Package Tests)
 --%suitepath(Temperature_Converter)
-CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
+
   --%test(Celsius to Kelvin conversion)
   PROCEDURE test_celsius_to_kelvin;
   --%test(Kelvin to Celsius conversion)
