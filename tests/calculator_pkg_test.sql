@@ -1,35 +1,67 @@
-CREATE OR REPLACE PACKAGE calculator_pkg AS
-  FUNCTION add(a NUMBER, b NUMBER) RETURN NUMBER;
-  FUNCTION subtract(a NUMBER, b NUMBER) RETURN NUMBER;
-  FUNCTION multiply(a NUMBER, b NUMBER) RETURN NUMBER;
-  FUNCTION divide(a NUMBER, b NUMBER) RETURN NUMBER;
-END calculator_pkg;
+CREATE OR REPLACE PACKAGE calculator_pkg_test IS
+  -- utPLSQL test package
+  --%suite(Calculator Package Tests)
+  --%suitepath(calculator)
+
+  --%test(Test addition)
+  PROCEDURE test_add;
+
+  --%test(Test subtraction)
+  PROCEDURE test_subtract;
+
+  --%test(Test multiplication)
+  PROCEDURE test_multiply;
+
+  --%test(Test division)
+  PROCEDURE test_divide;
+
+/*
+  --%test(Test division by zero)
+  PROCEDURE test_divide_by_zero;
+*/
+END calculator_pkg_test;
 /
 
-CREATE OR REPLACE PACKAGE BODY calculator_pkg AS
+CREATE OR REPLACE PACKAGE BODY calculator_pkg_test IS
 
-  FUNCTION add(a NUMBER, b NUMBER) RETURN NUMBER IS
+  PROCEDURE test_add IS
+    l_result NUMBER;
   BEGIN
-    RETURN a + b;
-  END add;
+    l_result := calculator_pkg.add(2, 3);
+    ut.expect(l_result).to_equal(5);
+  END test_add;
 
-  FUNCTION subtract(a NUMBER, b NUMBER) RETURN NUMBER IS
+  PROCEDURE test_subtract IS
+    l_result NUMBER;
   BEGIN
-    RETURN a - b;
-  END subtract;
+    l_result := calculator_pkg.subtract(10, 4);
+    ut.expect(l_result).to_equal(6);
+  END test_subtract;
 
-  FUNCTION multiply(a NUMBER, b NUMBER) RETURN NUMBER IS
+  PROCEDURE test_multiply IS
+    l_result NUMBER;
   BEGIN
-    RETURN a * b;
-  END multiply;
+    l_result := calculator_pkg.multiply(3, 5);
+    ut.expect(l_result).to_equal(15);
+  END test_multiply;
 
-  FUNCTION divide(a NUMBER, b NUMBER) RETURN NUMBER IS
+  PROCEDURE test_divide IS
+    l_result NUMBER;
   BEGIN
-    IF b = 0 THEN
-      RAISE_APPLICATION_ERROR(-20001, 'Division by zero is not allowed.');
-    END IF;
-    RETURN a / b;
-  END divide;
+    l_result := calculator_pkg.divide(10, 2);
+    ut.expect(l_result).to_equal(5);
+  END test_divide;
 
-END calculator_pkg;
+/*
+  PROCEDURE test_divide_by_zero IS
+  BEGIN
+    ut.expect(
+      FUNCTION RETURN NUMBER IS
+      BEGIN
+        RETURN calculator_pkg.divide(1, 0);
+      END;
+    ).to_raise_application_error(-20001);
+  END test_divide_by_zero;
+*/
+END calculator_pkg_test;
 /
