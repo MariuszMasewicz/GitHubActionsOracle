@@ -1,24 +1,24 @@
 --%suite(Temperature Converter Package Tests)
- --%suitepath(Temperature_Converter)
+--%suitepath(Temperature_Converter)
 CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
-  --%test
+  --%test(Celsius to Kelvin conversion)
   PROCEDURE test_celsius_to_kelvin;
-  --%test
+  --%test(Kelvin to Celsius conversion)
   PROCEDURE test_kelvin_to_celsius;
-  --%test
+  --%test(Celsius to Fahrenheit conversion)
   PROCEDURE test_celsius_to_fahrenheit;
-  --%test
+  --%test(Fahrenheit to Celsius conversion)
   PROCEDURE test_fahrenheit_to_celsius;
-  --%test
+  --%test(Kelvin to Fahrenheit conversion)
   PROCEDURE test_kelvin_to_fahrenheit;
-  --%test
+  --%test(Fahrenheit to Kelvin conversion)
   PROCEDURE test_fahrenheit_to_kelvin;
-/*
-  --%test
+  /*
+  --%test(Kelvin below zero not allowed)
   PROCEDURE test_kelvin_below_zero;
-  --%test
+  --%test(Celsius below absolute zero not allowed)
   PROCEDURE test_celsius_below_absolute_zero;
-  --%test
+  --%test(Fahrenheit below absolute zero not allowed)
   PROCEDURE test_fahrenheit_below_absolute_zero;
   */
 END temperature_converter_pkg_test;
