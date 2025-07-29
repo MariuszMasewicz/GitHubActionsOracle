@@ -47,135 +47,103 @@ CREATE OR REPLACE PACKAGE temperature_converter_pkg_test IS
 END temperature_converter_pkg_test;
 /
 
-CREATE OR REPLACE PACKAGE BODY DISTANCE_CONVERTER_PKG_TEST IS
+CREATE OR REPLACE PACKAGE BODY temperature_converter_pkg_test IS
 
-  PROCEDURE TEST_METERS_TO_YARDS IS
-    L_RESULT NUMBER;
+  PROCEDURE test_celsius_to_kelvin IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_YARDS(1);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(1.0936, 1.0937);
-  END TEST_METERS_TO_YARDS;
+    l_result := temperature_converter_pkg.celsius_to_kelvin(0);
+    ut.expect(l_result).to_equal(273.15);
+  END test_celsius_to_kelvin;
 
-  PROCEDURE TEST_METERS_TO_YARDS_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_celsius_to_kelvin_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_YARDS(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_METERS_TO_YARDS_NEGATIVE;
+    l_result := temperature_converter_pkg.celsius_to_kelvin(-274);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_celsius_to_kelvin_negative;
 
-  PROCEDURE TEST_YARDS_TO_METERS IS
-    L_RESULT NUMBER;
+  PROCEDURE test_kelvin_to_celsius IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.YARDS_TO_METERS(1.0936133);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(0.9999, 1.0001);
-  END TEST_YARDS_TO_METERS;
+    l_result := temperature_converter_pkg.kelvin_to_celsius(273.15);
+    ut.expect(l_result).to_equal(0);
+  END test_kelvin_to_celsius;
 
-  PROCEDURE TEST_YARDS_TO_METERS_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_kelvin_to_celsius_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.YARDS_TO_METERS(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_YARDS_TO_METERS_NEGATIVE;
+    l_result := temperature_converter_pkg.kelvin_to_celsius(-1);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_kelvin_to_celsius_negative;
 
-  PROCEDURE TEST_METERS_TO_FEET IS
-    L_RESULT NUMBER;
+  PROCEDURE test_celsius_to_fahrenheit IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_FEET(1);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(3.2808, 3.2809);
-  END TEST_METERS_TO_FEET;
+    l_result := temperature_converter_pkg.celsius_to_fahrenheit(0);
+    ut.expect(l_result).to_equal(32);
+  END test_celsius_to_fahrenheit;
 
-  PROCEDURE TEST_METERS_TO_FEET_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_celsius_to_fahrenheit_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_FEET(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_METERS_TO_FEET_NEGATIVE;
+    l_result := temperature_converter_pkg.celsius_to_fahrenheit(-274);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_celsius_to_fahrenheit_negative;
 
-  PROCEDURE TEST_FEET_TO_METERS IS
-    L_RESULT NUMBER;
+  PROCEDURE test_fahrenheit_to_celsius IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.FEET_TO_METERS(3.2808399);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(0.9999, 1.0001);
-  END TEST_FEET_TO_METERS;
+    l_result := temperature_converter_pkg.fahrenheit_to_celsius(32);
+    ut.expect(l_result).to_equal(0);
+  END test_fahrenheit_to_celsius;
 
-  PROCEDURE TEST_FEET_TO_METERS_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_fahrenheit_to_celsius_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.FEET_TO_METERS(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_FEET_TO_METERS_NEGATIVE;
+    l_result := temperature_converter_pkg.fahrenheit_to_celsius(-500);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_fahrenheit_to_celsius_negative;
 
-  PROCEDURE TEST_METERS_TO_INCHES IS
-    L_RESULT NUMBER;
+  PROCEDURE test_kelvin_to_fahrenheit IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_INCHES(1);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(39.3700, 39.3701);
-  END TEST_METERS_TO_INCHES;
+    l_result := temperature_converter_pkg.kelvin_to_fahrenheit(273.15);
+    ut.expect(l_result).to_equal(32);
+  END test_kelvin_to_fahrenheit;
 
-  PROCEDURE TEST_METERS_TO_INCHES_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_kelvin_to_fahrenheit_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.METERS_TO_INCHES(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_METERS_TO_INCHES_NEGATIVE;
+    l_result := temperature_converter_pkg.kelvin_to_fahrenheit(-1);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_kelvin_to_fahrenheit_negative;
 
-  PROCEDURE TEST_INCHES_TO_METERS IS
-    L_RESULT NUMBER;
+  PROCEDURE test_fahrenheit_to_kelvin IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.INCHES_TO_METERS(39.3700787);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(0.9999, 1.0001);
-  END TEST_INCHES_TO_METERS;
+    l_result := temperature_converter_pkg.fahrenheit_to_kelvin(32);
+    ut.expect(l_result).to_equal(273.15);
+  END test_fahrenheit_to_kelvin;
 
-  PROCEDURE TEST_INCHES_TO_METERS_NEGATIVE IS
-    L_RESULT NUMBER;
+  PROCEDURE test_fahrenheit_to_kelvin_negative IS
+    l_result NUMBER;
   BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.INCHES_TO_METERS(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_INCHES_TO_METERS_NEGATIVE;
+    l_result := temperature_converter_pkg.fahrenheit_to_kelvin(-500);
+/*   EXCEPTION
+    WHEN temperature_converter_pkg.absolute_zero THEN
+      ut.expect(sqlcode).to_equal(-20002); */
+  END test_fahrenheit_to_kelvin_negative;
 
-  PROCEDURE TEST_KILOMETERS_TO_MILES IS
-    L_RESULT NUMBER;
-  BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.KILOMETERS_TO_MILES(1);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(0.6213, 0.6214);
-  END TEST_KILOMETERS_TO_MILES;
-
-  PROCEDURE TEST_KILOMETERS_TO_MILES_NEGATIVE IS
-    L_RESULT NUMBER;
-  BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.KILOMETERS_TO_MILES(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_KILOMETERS_TO_MILES_NEGATIVE;
-
-  PROCEDURE TEST_MILES_TO_KILOMETERS IS
-    L_RESULT NUMBER;
-  BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.MILES_TO_KILOMETERS(0.621371192);
-    UT.EXPECT(L_RESULT).TO_BE_BETWEEN(0.9999, 1.0001);
-  END TEST_MILES_TO_KILOMETERS;
-
-  PROCEDURE TEST_MILES_TO_KILOMETERS_NEGATIVE IS
-    L_RESULT NUMBER;
-  BEGIN
-    L_RESULT := DISTANCE_CONVERTER_PKG.MILES_TO_KILOMETERS(-1);
-  /*EXCEPTION
-    WHEN DISTANCE_CONVERTER_PKG.DISTANCE_NEGATIVE THEN
-      UT.EXPECT(SQLCODE).TO_EQUAL(-20001);*/
-  END TEST_MILES_TO_KILOMETERS_NEGATIVE;
-
-END DISTANCE_CONVERTER_PKG_TEST;
+END temperature_converter_pkg_test;
 /
