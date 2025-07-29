@@ -15,10 +15,10 @@ CREATE OR REPLACE PACKAGE CALCULATOR_PKG_TEST IS
   --%test(Test division)
   PROCEDURE TEST_DIVIDE;
 
-/*
   --%test(Test division by zero)
-  PROCEDURE test_divide_by_zero;
-*/
+  --%throws(calculator_pkg.division_by_zero)
+  PROCEDURE TEST_DIVIDE_BY_ZERO;
+
 END CALCULATOR_PKG_TEST;
 /
 
@@ -64,16 +64,17 @@ CREATE OR REPLACE PACKAGE BODY CALCULATOR_PKG_TEST IS
     UT.EXPECT(L_RESULT).TO_EQUAL(5);
   END TEST_DIVIDE;
 
-/*
-  PROCEDURE test_divide_by_zero IS
+  PROCEDURE TEST_DIVIDE_BY_ZERO IS
+    L_RESULT NUMBER;
   BEGIN
-    ut.expect(
-      FUNCTION RETURN NUMBER IS
-      BEGIN
-        RETURN calculator_pkg.divide(1, 0);
-      END;
-    ).to_raise_application_error(-20001);
-  END test_divide_by_zero;
-*/
+    L_RESULT := CALCULATOR_PKG.DIVIDE(
+      1
+     ,0
+    );
+  /*EXCEPTION
+    WHEN calculator_pkg.division_by_zero THEN
+      ut.expect(sqlcode).to_equal(-20001);*/
+  END TEST_DIVIDE_BY_ZERO;
+
 END CALCULATOR_PKG_TEST;
 /
