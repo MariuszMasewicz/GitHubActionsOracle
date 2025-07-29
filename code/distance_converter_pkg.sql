@@ -9,6 +9,7 @@ CREATE OR REPLACE PACKAGE distance_converter_pkg AS
   FUNCTION miles_to_kilometers(p_miles NUMBER) RETURN NUMBER;
 END distance_converter_pkg;
 /
+
 CREATE OR REPLACE PACKAGE BODY distance_converter_pkg AS
   FUNCTION meters_to_yards(p_meters NUMBER) RETURN NUMBER IS
   BEGIN
@@ -49,4 +50,5 @@ CREATE OR REPLACE PACKAGE BODY distance_converter_pkg AS
   BEGIN
     RETURN p_miles / 0.621371192;
   END miles_to_kilometers;
-END
+END distance_converter_pkg;
+/
