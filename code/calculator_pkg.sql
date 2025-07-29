@@ -11,17 +11,17 @@ CREATE OR REPLACE PACKAGE BODY calculator_pkg AS
   FUNCTION add(a NUMBER, b NUMBER) RETURN NUMBER IS
   BEGIN
     RETURN a + b;
-  END;
+  END add;
 
   FUNCTION subtract(a NUMBER, b NUMBER) RETURN NUMBER IS
   BEGIN
     RETURN a - b;
-  END;
+  END subtract;
 
   FUNCTION multiply(a NUMBER, b NUMBER) RETURN NUMBER IS
   BEGIN
     RETURN a * b;
-  END;
+  END multiply;
 
   FUNCTION divide(a NUMBER, b NUMBER) RETURN NUMBER IS
   BEGIN
@@ -29,7 +29,7 @@ CREATE OR REPLACE PACKAGE BODY calculator_pkg AS
       RAISE_APPLICATION_ERROR(-20001, 'Division by zero is not allowed.');
     END IF;
     RETURN a / b;
-  END;
+  END divide;
 
 END calculator_pkg;
 /
