@@ -12,7 +12,6 @@ END distance_converter_pkg;
 /
 
 CREATE OR REPLACE PACKAGE BODY distance_converter_pkg AS
-  distance_negative EXCEPTION;
 
   FUNCTION meters_to_yards(p_meters NUMBER) RETURN NUMBER IS
   BEGIN
