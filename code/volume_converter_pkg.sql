@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE  AS
+CREATE OR REPLACE PACKAGE volume_converter_pkg AS
   FUNCTION liters_to_gallons(p_liters NUMBER) RETURN NUMBER;
   FUNCTION gallons_to_liters(p_gallons NUMBER) RETURN NUMBER;
   FUNCTION liters_to_pints(p_liters NUMBER) RETURN NUMBER;
