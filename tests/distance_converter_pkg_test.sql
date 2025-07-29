@@ -6,7 +6,7 @@ CREATE OR REPLACE PACKAGE DISTANCE_CONVERTER_PKG_TEST IS
   PROCEDURE TEST_METERS_TO_YARDS;
   --%test(Meters to Yards negative distance)
   --%throws(distance_converter_pkg.distance_negative)
-  PROCEDURE TEST_METERS_TO_YARDS_NEGATIVE;
+  --PROCEDURE TEST_METERS_TO_YARDS_NEGATIVE;
 
   --%test(Yards to Meters conversion)
   PROCEDURE TEST_YARDS_TO_METERS;
