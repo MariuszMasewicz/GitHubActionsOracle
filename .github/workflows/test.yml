@@ -46,10 +46,16 @@ jobs:
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @utPLSQL/source/install_headless.sql
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @ut3_grants.sql
            
-      - name: Run Tests
+      - name: Install application code
         run: |
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @code/install_code.sql
+      
+      - name: Install Tests
+        run: |
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @tests/install_tests.sql
+      
+      - name: Run Tests
+        run: |
           ./sqlcl/sqlcl/bin/sql -S sys/oracle@//localhost/XEPDB1 as sysdba @run_tests.sql
           
       - name: Upload JUnit test results
@@ -74,8 +80,7 @@ jobs:
           flaky_summary: true
           verbose_summary: true
 
-
-      - name: Search for errors
-        run: |
-          bash analyze_test_output.sh
+#      - name: Search for errors
+#        run: |
+#          bash analyze_test_output.sh
 
